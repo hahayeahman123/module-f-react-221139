@@ -6,14 +6,14 @@ import { useEffect } from 'react';
 // --- ---------------------------------- ---
 
 export function Map() {
-    let position = [54.898521,23.903597]
+    let position = [54.6525,24.9342]
     const fetchcoords= async ()=>{
             const responce = await fetch('https://konkursas.kitm.lt/backend/368565/api/v1/places',);
-            const data = await responce.json()
-            console.log(data.data[0].latitude);
-            console.log(data.data[0].longitude);
-            // dont fully understadn how to assign the coordinates, but I know Im close
+            const data = await responce.json();
 
+            position[0] = await data.data[2].latitude;
+            position[1] = await data.data[2].longitude;
+            // dont fully understadn how to assign the coordinates, but I know Im close
     }
     fetchcoords();   
 
@@ -22,8 +22,8 @@ export function Map() {
   const customIcon = new Icon({
     iconUrl: './marker-icon.png',
     iconSize: [20, 20],
-    // iconAnchor: [1, 1],
-    // popupAnchor: [-0, -76]
+    iconAnchor: [1, 1],
+    popupAnchor: [-0, -76]
   })
 
   return (
@@ -39,7 +39,6 @@ export function Map() {
           icon={customIcon}
         >
           <Popup>
-            Cia Kauno centras, koordinates yra: {position[0]} {position[1]}
           </Popup>
         </Marker>
       </MapContainer>

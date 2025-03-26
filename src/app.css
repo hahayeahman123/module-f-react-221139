@@ -1,0 +1,8 @@
+h1{
+  text-align: center;
+}
+
+.leaflet-container {
+  width: 500px;
+  height: 500px;
+}
